@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>StudyMate - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard">
+    <h1>Welcome to StudyMate 👋</h1>
+    <p>Your AI Student Assistant</p>
+
+    <div class="cards">
+
+        <div class="card">
+            <h2>🤖 AI Assistant</h2>
+            <p>Ask questions and get study help.</p>
+            <a href="/assistant">Open</a>
+        </div>
+
+        <div class="card">
+            <h2>📝 AI Quiz</h2>
+            <p>Upload notes or PDF to generate a quiz.</p>
+            <a href="/quiz">Open</a>
+        </div>
+
+        <div class="card">
+            <h2>📚 Study Planner</h2>
+            <p>Plan your study and manage deadlines.</p>
+            <a href="/planner">Open</a>
+        </div>
+
+    </div>
+
+    <a href="/" class="logout">Logout</a>
+</div>
+
+</body>
+</html>

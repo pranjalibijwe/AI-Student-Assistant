@@ -1,0 +1,13 @@
+[
+    {
+        "subject": "Python",
+        "task": "Learn Functions",
+        "due_date": "2026-09-10",
+        "completed": true
+    },
+    {
+        "subject": "Java",
+        "task": "Submit Assignment",
+        "due_date": "2026-09-12"
+    }
+]

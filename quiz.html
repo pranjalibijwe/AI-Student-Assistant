@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>StudyMate - AI Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="box quiz-box">
+
+    <h1>📝 AI Quiz Generator</h1>
+    <p>Upload your study PDF and test your knowledge.</p>
+
+    {% if not questions and score is none %}
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="notes" accept=".pdf" required>
+        <button type="submit">Generate Quiz</button>
+    </form>
+
+    {% endif %}
+
+
+    {% if questions %}
+
+    <form method="POST">
+
+        {% for q in questions %}
+
+        {% set q_index = loop.index0 %}
+
+        <div class="quiz-card">
+
+            <h3>Question {{ loop.index }}</h3>
+
+            <p class="question">
+                {{ q.question }}
+            </p>
+
+            {% for option in q.options %}
+
+            <label class="option">
+
+                <input type="radio"
+                       name="answer_{{ q_index }}"
+                       value="{{ option }}"
+                       required>
+
+                <span>
+                    {{ option[:70] }}
+                    {% if option|length > 70 %}...{% endif %}
+                </span>
+
+            </label>
+
+            {% endfor %}
+
+            <input type="hidden"
+                   name="correct_{{ q_index }}"
+                   value="{{ q.answer }}">
+
+        </div>
+
+        {% endfor %}
+
+        <input type="hidden"
+               name="total"
+               value="{{ questions|length }}">
+
+        <button type="submit" name="submit_quiz">
+            Submit Quiz
+        </button>
+
+    </form>
+
+    {% endif %}
+
+
+    {% if score is not none %}
+
+    <div class="score">
+        🎉 Your Score: {{ score }} / {{ questions|length }}
+    </div>
+
+    {% endif %}
+
+
+    <br>
+
+    <a href="/dashboard">← Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>
